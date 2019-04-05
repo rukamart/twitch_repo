@@ -1,4 +1,4 @@
-# tw-search
+# twitch_repo
 
 ## Project setup
 ```
