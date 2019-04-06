@@ -1,0 +1,10 @@
+<template>
+  <iframe
+  src="https://player.twitch.tv/?channel=riotgames&muted=true"
+  height="720"
+  width="1280"
+  frameborder="0"
+  scrolling="no"
+  allowfullscreen="true">
+  </iframe>
+</template>
