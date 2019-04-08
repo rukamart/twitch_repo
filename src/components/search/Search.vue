@@ -6,7 +6,7 @@
     <div class="range">
       <b-input-group>
         <b-input-group-prepend>
-          <b-button v-if="stream" v-on:click="backToList()" >List</b-button>
+          <b-button v-if="stream" v-on:click="backToList()">List</b-button>
         </b-input-group-prepend>
         <b-form-input v-on:keyup="keyup($event.target.value)"></b-form-input>
       </b-input-group>
@@ -14,8 +14,8 @@
     <!-- Search Bar END -->
     <!-- Stream -->
     <div v-if="stream">
-      <br>
-      <br>
+      <br />
+      <br />
       <iframe
         :src="stream"
         height="720"
@@ -28,25 +28,25 @@
     </div>
     <!-- Stream END -->
     <div v-else>
-    <!-- Range per page -->
-    <div class="range">
-      <b-input-group
-        v-on:change="changeItem()"
-        :prepend="selected"
-        append="50"
-        class="mt-3"
-      >
-        <b-form-input
-          v-model="selected"
-          type="range"
-          min="0"
-          max="50"
-        ></b-form-input>
-      </b-input-group>
-    </div>
-    <!-- Range per page END -->
-      <br>
-      <br>
+      <!-- Range per page -->
+      <div class="range">
+        <b-input-group
+          v-on:change="changeItem()"
+          :prepend="selected"
+          append="50"
+          class="mt-3"
+        >
+          <b-form-input
+            v-model="selected"
+            type="range"
+            min="0"
+            max="50"
+          ></b-form-input>
+        </b-input-group>
+      </div>
+      <!-- Range per page END -->
+      <br />
+      <br />
       <!-- List of Streams -->
       <div class="wrapper">
         <div class="menu" v-for="(post, key) in posts" :key="key">
@@ -167,14 +167,14 @@ export default {
 
       timeout = setTimeout(() => {
         this.stream = false;
-        if(name.length > 0){
+        if (name.length > 0) {
           this.axiosFunc(
             `https://api.twitch.tv/kraken/search/streams?query=${name}`
           );
         } else {
           this.changeItem();
         }
-      // wait one second for the end of word
+        // wait one second for the end of word
       }, 1000);
     }
   },
