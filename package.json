@@ -5,13 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "unit": "tape ./test/**/*.spec.js -r ./test/setup.js | tap-spec",
+    "coverage": "istanbul cover tape ./test/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.16",
     "core-js": "^2.6.5",
+    "jquery": "^3.3.1",
     "vue": "^2.6.10",
     "vue-loading-overlay": "^3.2.0"
   },
@@ -20,9 +23,17 @@
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
     "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
+    "browser-env": "^3.2.6",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "istanbul": "^0.4.5",
+    "require-extension-hooks": "^0.3.3",
+    "require-extension-hooks-babel": "^0.1.1",
+    "require-extension-hooks-vue": "^3.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.1",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {

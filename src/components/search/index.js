@@ -1,7 +1,25 @@
 import axios from "axios";
 
-var method = {
+const expire = 20000,
+  getCache = url => {
+    const localCache = localStorage[url] ? JSON.parse(localStorage[url]) : null;
+    if (
+      localCache &&
+      localCache.expire &&
+      Date.now() - localCache.expire <= expire
+    ) {
+      return localCache;
+    }
+    return null;
+  },
+  setCache = (url, data) =>
+    (localStorage[url] = JSON.stringify({ data, expire: Date.now() }));
+
+export default {
   genericAxios(url) {
+    if (getCache(url)) {
+      return new Promise(resolve => resolve(getCache(url).data));
+    }
     return axios
       .get(url, {
         headers: {
@@ -9,9 +27,10 @@ var method = {
           Accept: "application/vnd.twitchtv.v5+json"
         }
       })
-      .then(response => response.data)
+      .then(response => {
+        setCache(url, response.data);
+        return response.data;
+      })
       .catch(e => e);
   }
 };
-
-export default method;
