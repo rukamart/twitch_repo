@@ -23,7 +23,12 @@ export default {
 
   methods: {
     // Generic get func
-    axiosFunc: function(url, viewers = false, loading = true, expire = config.expire) {
+    axiosFunc: function(
+      url,
+      viewers = false,
+      loading = true,
+      expire = config.expire
+    ) {
       this.loading = loading;
       js.genericAxios(url, expire, config.headers)
         .then(response => {
@@ -66,19 +71,12 @@ export default {
 
     // click the button to the stream
     getViewers: function(id) {
-      this.axiosFunc(
-        `${config.viewers}${id}`,
-        true,
-        false,
-        3000
-      );
+      this.axiosFunc(`${config.viewers}${id}`, true, false, 3000);
     },
 
     // click the button to the stream
     clickItem: function(post) {
-      this.stream = `${config.channel}?channel=${
-        post.channel.name
-      }&muted=true`;
+      this.stream = `${config.channel}?channel=${post.channel.name}&muted=true`;
       this.streamData = {
         title: post.game,
         description: post.channel.status,
