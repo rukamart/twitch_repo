@@ -16,7 +16,7 @@
         <b-input-group-prepend>
           <b-button v-if="stream" v-on:click="backToList()">List</b-button>
         </b-input-group-prepend>
-        <b-form-input v-on:keyup="keyup($event.target.value)"></b-form-input>
+        <b-form-input placeholder="Search..." v-on:keyup="keyup($event.target.value)"></b-form-input>
       </b-input-group>
     </keep-alive>
   </div>
@@ -35,9 +35,11 @@
     </iframe>
   </div>
   <div>
-    <p>{{ streamData.title }}</p>
+    <h3>
+      {{ streamData.title }}
+      <b-badge pill variant="primary">{{ streamData.viewers }}</b-badge>
+    </h3>
     <p>{{ streamData.description }}</p>
-    <p>{{ streamData.viewers }}</p>
   </div>
 </div>
 <!-- Stream END -->
