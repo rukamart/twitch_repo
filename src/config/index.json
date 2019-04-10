@@ -1,0 +1,13 @@
+{
+  "search_streams" : "https://api.twitch.tv/kraken/search/streams",
+  "streams": "https://api.twitch.tv/kraken/streams",
+  "viewers": "https://api.twitch.tv/kraken/streams/",
+  "channel": "https://player.twitch.tv/",
+  "headers": {
+    "Client-ID": "wkulgh1k6i4dcide9mq2ruhij1qc7q",
+    "Accept": "application/vnd.twitchtv.v5+json"
+  },
+  "expire": 20000,
+  "viewers_timmer": 3000,
+  "keyup_wait": 1000
+}

@@ -3,6 +3,7 @@
 <script>
 import js from "../search/index";
 import Loading from "vue-loading-overlay";
+import config from "../../config/index";
 import "vue-loading-overlay/dist/vue-loading.css";
 let timeout = null;
 
@@ -22,9 +23,9 @@ export default {
 
   methods: {
     // Generic get func
-    axiosFunc: function(url, viewers = false, loading = true) {
+    axiosFunc: function(url, viewers = false, loading = true, expire = config.expire) {
       this.loading = loading;
-      js.genericAxios(url)
+      js.genericAxios(url, expire, config.headers)
         .then(response => {
           if (!viewers) {
             this.loading = false;
@@ -44,14 +45,12 @@ export default {
       localStorage.selected = this.selected;
       if (localStorage.query) {
         this.axiosFunc(
-          `https://api.twitch.tv/kraken/search/streams?query=${
-            localStorage.query
-          }&limit=${this.selected}`
+          `${config.search_streams}?query=${localStorage.query}&limit=${
+            this.selected
+          }`
         );
       } else {
-        this.axiosFunc(
-          `https://api.twitch.tv/kraken/streams?limit=${this.selected}`
-        );
+        this.axiosFunc(`${config.streams}?limit=${this.selected}`);
       }
     },
 
@@ -59,26 +58,25 @@ export default {
     backToList: function() {
       this.stream = false;
       if (localStorage.query) {
-        this.axiosFunc(
-          `https://api.twitch.tv/kraken/search/streams?query=${
-            localStorage.query
-          }`
-        );
+        this.axiosFunc(`${config.search_streams}?query=${localStorage.query}`);
       } else {
-        this.axiosFunc(
-          `https://api.twitch.tv/kraken/streams?limit=${this.selected}`
-        );
+        this.axiosFunc(`${config.streams}?limit=${this.selected}`);
       }
     },
 
     // click the button to the stream
     getViewers: function(id) {
-      this.axiosFunc(`https://api.twitch.tv/kraken/streams/${id}`, true, false);
+      this.axiosFunc(
+        `${config.viewers}${id}`,
+        true,
+        false,
+        3000
+      );
     },
 
     // click the button to the stream
     clickItem: function(post) {
-      this.stream = `https://player.twitch.tv/?channel=${
+      this.stream = `${config.channel}?channel=${
         post.channel.name
       }&muted=true`;
       this.streamData = {
@@ -90,7 +88,7 @@ export default {
         function() {
           this.getViewers(post.channel._id);
         }.bind(this),
-        3000
+        config.viewers_timmer
       );
     },
 
@@ -103,15 +101,13 @@ export default {
         localStorage.query = name;
         if (name.length > 0) {
           this.axiosFunc(
-            `https://api.twitch.tv/kraken/search/streams?query=${name}&limit=${
-              this.selected
-            }`
+            `${config.search_streams}?query=${name}&limit=${this.selected}`
           );
         } else {
           this.changeItem();
         }
         // wait one second for the end of word
-      }, 1000);
+      }, config.keyup_wait);
     }
   },
 
