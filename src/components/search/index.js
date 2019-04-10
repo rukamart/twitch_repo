@@ -12,12 +12,11 @@ const expire = 20000,
     }
     return null;
   },
-  setCache = (url, data) =>
-    (localStorage[url] = JSON.stringify({ data, expire: Date.now() }));
+  setCache = (url, data) => localStorage.setItem(url, JSON.stringify({ data, expire: Date.now() }));
 
 export default {
   genericAxios(url) {
-    if (getCache(url)) {
+    if (process.env.RUN && getCache(url)) {
       return new Promise(resolve => resolve(getCache(url).data));
     }
     return axios
@@ -28,7 +27,9 @@ export default {
         }
       })
       .then(response => {
-        setCache(url, response.data);
+        if (process.env.RUN) {
+          setCache(url, response.data);
+        }
         return response.data;
       })
       .catch(e => e);
