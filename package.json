@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "server": "RUN=true vue-cli-service serve",
-    "dev": "RUN=true vue-cli-service serve --open",
+    "dev": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "build:dev": "vue-cli-service build --mode development",
     "lint": "vue-cli-service lint",
