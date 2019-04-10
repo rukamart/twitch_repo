@@ -15,12 +15,7 @@
 }
 
 .main {
-  margin: auto;
-}
-
-.main2 {
-  background-image: url("../../assets/tw.jpeg");
-  background-color: #cccccc;
+  margin: 2%;
 }
 
 .range {

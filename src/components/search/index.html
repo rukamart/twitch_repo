@@ -1,89 +1,85 @@
-<div class="main2">
-  <div id="app" class="main">
-    <!-- loading -->
-    <loading
-    :active.sync="loading"
-    :opacity="0.7"
-    color="#6441a5"
-    :height="1000"
-    :width="200"
-    loader="bars"
-    :is-full-page="true"
-    ></loading>
-    <br>
-    <!-- Search -->
-    <div class="range">
-      <keep-alive :max="10">
-        <b-input-group>
-          <b-input-group-prepend>
-            <b-button v-if="stream" v-on:click="backToList()">List</b-button>
-          </b-input-group-prepend>
-          <b-form-input v-on:keyup="keyup($event.target.value)"></b-form-input>
-        </b-input-group>
-      </keep-alive>
-    </div>
-    <!-- Search Bar END -->
-    <!-- Stream -->
-    <div class="container" v-if="stream">
-      <div>
-        <iframe
-        :src="stream"
-        height="620"
-        width="1180"
-        frameborder="0"
-        scrolling="no"
-        allowfullscreen="true"
-        >
-      </iframe>
-    </div>
+<div id="app" class="main">
+  <!-- loading -->
+  <loading
+  :active.sync="loading"
+  :opacity="0.7"
+  color="#6441a5"
+  :height="1000"
+  :width="200"
+  loader="bars"
+  :is-full-page="true"
+  ></loading>
+  <!-- Search -->
+  <div class="range">
+    <keep-alive :max="10">
+      <b-input-group>
+        <b-input-group-prepend>
+          <b-button v-if="stream" v-on:click="backToList()">List</b-button>
+        </b-input-group-prepend>
+        <b-form-input v-on:keyup="keyup($event.target.value)"></b-form-input>
+      </b-input-group>
+    </keep-alive>
+  </div>
+  <!-- Search Bar END -->
+  <!-- Stream -->
+  <div class="container" v-if="stream">
     <div>
-      <p>{{ streamData.title }}</p>
-      <p>{{ streamData.description }}</p>
-      <p>{{ streamData.viewers }}</p>
-    </div>
-  </div>
-  <!-- Stream END -->
-  <div v-else>
-    <!-- Range per page -->
-    <div class="range">
-      <b-input-group
-      v-on:change="changeItem()"
-      :prepend="selected"
-      append="100"
-      class="mt-3"
+      <iframe
+      :src="stream"
+      height="620"
+      width="1180"
+      frameborder="0"
+      scrolling="no"
+      allowfullscreen="true"
       >
-      <b-form-input
-      v-model="selected"
-      type="range"
-      min="0"
-      max="100"
-      ></b-form-input>
-    </b-input-group>
+    </iframe>
   </div>
-  <!-- Range per page END -->
-  <br />
-  <br />
-  <!-- List of Streams -->
-  <div class="wrapper">
-    <div class="menu" v-for="(post, key) in posts" :key="key">
-      <b-card
-      :title="post.game"
-      :img-src="post.preview.medium"
-      img-alt="Image"
-      img-top
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
-      >
-      <b-card-text>{{ post.channel.status }}</b-card-text>
-      <b-button v-on:click="clickItem(post)" variant="primary"
-      >Go to STREAM</b-button
-      >
-    </b-card>
+  <div>
+    <p>{{ streamData.title }}</p>
+    <p>{{ streamData.description }}</p>
+    <p>{{ streamData.viewers }}</p>
   </div>
-  </div>
-  <!-- List of Streams END-->
-  </div>
-  </div>
-
+</div>
+<!-- Stream END -->
+<div v-else>
+  <!-- Range per page -->
+  <div class="range">
+    <b-input-group
+    v-on:change="changeItem()"
+    :prepend="selected"
+    append="100"
+    class="mt-3"
+    >
+    <b-form-input
+    v-model="selected"
+    type="range"
+    min="0"
+    max="100"
+    ></b-form-input>
+  </b-input-group>
+</div>
+<!-- Range per page END -->
+<br />
+<br />
+<!-- List of Streams -->
+<div class="wrapper">
+  <div class="menu" v-for="(post, key) in posts" :key="key">
+    <b-card
+    :title="post.game"
+    :img-src="post.preview.medium"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 20rem;"
+    class="mb-2"
+    >
+    <b-card-text>{{ post.channel.status }}</b-card-text>
+    <b-button v-on:click="clickItem(post)" variant="primary"
+    >Go to STREAM</b-button
+    >
+  </b-card>
+</div>
+</div>
+<!-- List of Streams END-->
+</div>
 </div>
