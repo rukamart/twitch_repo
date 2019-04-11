@@ -1,6 +1,6 @@
 import test from 'tape'
 import { shallow } from '@vue/test-utils'
-import config from "../../../src/config/index";
+import config from "../../../config/index";
 import get from '../../../src/components/search/index.js'
 
 test('Get Streams successfully', t => {

@@ -3,7 +3,7 @@
 <script>
 import js from "../search/index";
 import Loading from "vue-loading-overlay";
-import config from "../../config/index";
+import config from "../../../config/index";
 import "vue-loading-overlay/dist/vue-loading.css";
 let timeout = null;
 

@@ -8,6 +8,6 @@
     "Accept": "application/vnd.twitchtv.v5+json"
   },
   "expire": 20000,
-  "viewers_timmer": 3000,
+  "viewers_timmer": 10000,
   "keyup_wait": 1000
 }
