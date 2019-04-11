@@ -30,7 +30,7 @@ npm run build
 npm run build:dev
 ```
 
-### Run your tests
+### Run your test
 ```
 npm run unit
 ```
